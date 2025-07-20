@@ -85,7 +85,7 @@ Delegations are stored in the `delegations` table.
    ```
 4. Update database credentials in `config/db.php`
 5. Run using XAMPP/WAMP server
-6. Visit `http://localhost/vendor-management/auth/signup.php` to create a super vendor
+6. Visit `http://localhost/vendor-management/public/dashboard.php` to open the project
 
 ---
 
@@ -99,8 +99,7 @@ Delegations are stored in the `delegations` table.
 
 Only **super** can view full dashboard and manage all vendors.
 
----
-
+Demo Video link: https://drive.google.com/file/d/1JpteqMYoh_H1vRegDtr7yQnrcIbnhDLm/view?usp=drive_link
 
 
 ## 🙋‍♂️ Author
