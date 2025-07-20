@@ -101,12 +101,8 @@ Only **super** can view full dashboard and manage all vendors.
 
 ---
 
-## 📸 Screenshots (Optional)
 
-> _Add screenshots here if you're submitting this visually._
-
----
 
 ## 🙋‍♂️ Author
 
-Built by **[Your Name]** as part of the **case study: Vendor Cab & Driver Onboarding with Hierarchy System**
+Built by Gunika as part of the **case study: Vendor Cab & Driver Onboarding with Hierarchy System**
