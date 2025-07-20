@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "User with this email already exists!";
     } else {
         // Insert user
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, vendor_id)
+        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, type, vendor_id)
                                VALUES (:name, :email, :password, :role, :type, :vendor_id)");
         $result = $stmt->execute([
             'name' => $name,
