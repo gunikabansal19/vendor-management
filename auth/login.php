@@ -8,20 +8,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    // ✅ Use the correct table: users (not vendors)
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-        // ✅ Set session values
+        // Set session values
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['vendor_id'] = $user['vendor_id'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['type'] = $user['type'];
         $_SESSION['user_name'] = $user['name'];
 
-        // ✅ Redirect to dashboard
+        // Redirect to dashboard
         header("Location: ../public/dashboard.php");
         exit();
     } else {

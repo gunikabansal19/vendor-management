@@ -11,7 +11,7 @@ if ($role !== 'super') {
 }
 
 // Get all sub-vendors
-$stmt = $pdo->prepare("SELECT id, name FROM vendors WHERE parent_id = ?");
+$stmt = $pdo->prepare("SELECT id, name FROM users WHERE vendor_id = ?");
 $stmt->execute([$parentId]);
 $subVendors = $stmt->fetchAll();
 ?>

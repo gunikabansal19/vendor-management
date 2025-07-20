@@ -2,7 +2,7 @@
 require_once '../utils/auth_check.php';
 require_once '../config/db.php';
 
-$vendor_id = $_SESSION['vendor_id'] ?? null;
+$vendor_id = $_SESSION['user_id'] ?? null;
 $role = $_SESSION['role'] ?? 'local';
 
 // Redirect if not super admin
@@ -13,7 +13,7 @@ if ($role !== 'super') {
 
 // Function to recursively get sub-vendors
 function fetchSubVendors($pdo, $parent_id, $level = 0) {
-    $stmt = $pdo->prepare("SELECT * FROM vendors WHERE parent_id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE vendor_id = ?");
     $stmt->execute([$parent_id]);
     $subVendors = $stmt->fetchAll();
 
@@ -55,7 +55,7 @@ function fetchSubVendors($pdo, $parent_id, $level = 0) {
         <tbody>
             <?php
             // Super vendor info
-            $stmt = $pdo->prepare("SELECT * FROM vendors WHERE id = ?");
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
             $stmt->execute([$vendor_id]);
             $super = $stmt->fetch();
 

@@ -3,24 +3,24 @@ session_start();
 require_once '../config/db.php';
 require_once '../utils/auth_check.php';
 
-// ✅ Only super_vendor can access
+//  Only super_vendor can access
 if ($_SESSION['role'] !== 'super') die("Access denied");
 
 $id = $_GET['id'] ?? null;
 if (!$id) die("Invalid ID");
 
-// ✅ Ensure user exists and is a sub-vendor
+//  Ensure user exists and is a sub-vendor
 $check = $pdo->prepare("SELECT * FROM users WHERE id = ? AND type = 'sub_vendor'");
 $check->execute([$id]);
 $user = $check->fetch();
 if (!$user) die("Invalid user");
 
-// ✅ Fetch existing rights if any
+//  Fetch existing rights if any
 $existing = $pdo->prepare("SELECT * FROM delegations WHERE vendor_id = ?");
 $existing->execute([$id]);
 $rights = $existing->fetch();
 
-// ✅ On form submission
+//  On form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $can_add_driver = isset($_POST['can_add_driver']) ? 1 : 0;
     $can_add_vehicle = isset($_POST['can_add_vehicle']) ? 1 : 0;

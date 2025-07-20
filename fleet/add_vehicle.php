@@ -8,7 +8,7 @@ $role = $_SESSION['role'] ?? 'local';
 $message = $error = "";
 
 
-// ✅ Super Vendor can skip delegation check
+//  Super Vendor can skip delegation check
 if ($role !== 'super') {
     $permStmt = $pdo->prepare("SELECT can_add_vehicle FROM delegations WHERE vendor_id = ?");
     $permStmt->execute([$vendor_id]);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("INSERT INTO vehicles (vendor_id, registration_no, model, fuel_type, seating_capacity, status) VALUES (?, ?, ?, ?, ?, 'active')");
             $stmt->execute([$selected_vendor, $registration_no, $model, $fuel_type, $seating_capacity]);
-            $message = "✅ Vehicle added successfully.";
+            $message = " Vehicle added successfully.";
         } catch (PDOException $e) {
             $error = "❌ Error: " . $e->getMessage();
         }

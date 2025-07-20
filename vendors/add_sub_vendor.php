@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, type, vendor_id, status) VALUES (?, ?, ?, ?, 'sub_vendor', ?, 'active')");
                 $stmt->execute([$name, $email, $password, $role, $vendor_id]);
-                $message = "✅ Sub-vendor added successfully!";
+                $message = " Sub-vendor added successfully!";
             }
         } catch (PDOException $e) {
             $error = "❌ Database error: " . $e->getMessage();

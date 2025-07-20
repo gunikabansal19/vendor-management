@@ -3,16 +3,16 @@ session_start();
 require_once '../config/db.php';
 require_once '../utils/auth_check.php';
 
-// ✅ Only super_vendor can access
+//  Only super_vendor can access
 if ($_SESSION['role'] !== 'super') {
     die("❌ Access denied");
 }
 
-// ✅ Fetch sub-vendor accounts
+//  Fetch sub-vendor accounts
 $stmt = $pdo->query("SELECT id, name, email, status FROM users WHERE type = 'sub_vendor'");
 $vendors = $stmt->fetchAll();
 
-// ✅ Get drivers and vehicles per vendor
+//  Get drivers and vehicles per vendor
 $stats = [];
 foreach ($vendors as $vendor) {
     $driverStmt = $pdo->prepare("SELECT COUNT(*) FROM drivers WHERE vendor_id = ?");
@@ -25,7 +25,7 @@ foreach ($vendors as $vendor) {
     ];
 }
 
-// ✅ Export CSV (without last_login)
+//  Export CSV (without last_login)
 if (isset($_GET['export']) && $_GET['export'] === 'csv') {
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="vendor_report.csv"');

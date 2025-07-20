@@ -10,7 +10,7 @@ if (!$vendor_id || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// ✅ Super Vendor can skip delegation check
+//  Super Vendor can skip delegation check
 if ($role !== 'super') {
     $permStmt = $pdo->prepare("SELECT can_upload_docs FROM delegations WHERE vendor_id = ?");
     $permStmt->execute([$vendor_id]);
@@ -22,7 +22,7 @@ if ($role !== 'super') {
     }
 }
 
-// ✅ Get and validate input
+//  Get and validate input
 $driver_id = $_POST['driver_id'] ?? null;
 $expiry_date = $_POST['expiry_date'] ?? null;
 $doc_type = $_POST['doc_type'] ?? 'DL';
@@ -32,7 +32,7 @@ if (!$driver_id || !$expiry_date || !isset($_FILES['document'])) {
     exit;
 }
 
-// ✅ Upload file
+//  Upload file
 $uploadDir = '../uploads/';
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
@@ -45,7 +45,7 @@ if (!move_uploaded_file($_FILES['document']['tmp_name'], $targetFile)) {
     exit;
 }
 
-// ✅ Save into database
+//  Save into database
 $stmt = $pdo->prepare("INSERT INTO driver_docs (driver_id, doc_type, doc_file, expiry_date) VALUES (?, ?, ?, ?)");
 $stmt->execute([$driver_id, $doc_type, $targetFile, $expiry_date]);
 

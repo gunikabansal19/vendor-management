@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_vendor'])) {
     try {
         $stmt = $pdo->prepare("UPDATE vehicles SET vendor_id = ? WHERE id = ?");
         $stmt->execute([$new_vendor_id, $vehicle_id]);
-        $message = "✅ Vendor changed successfully.";
+        $message = " Vendor changed successfully.";
     } catch (PDOException $e) {
         $error = "❌ Error changing vendor: " . $e->getMessage();
     }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['driver_id'], $_POST['
     try {
         $stmt = $pdo->prepare("UPDATE vehicles SET assigned_driver_id = ? WHERE id = ?");
         $stmt->execute([$driver_id, $vehicle_id]);
-        $message = "✅ Vehicle assigned successfully.";
+        $message = " Vehicle assigned successfully.";
     } catch (PDOException $e) {
         $error = "❌ Error: " . $e->getMessage();
     }

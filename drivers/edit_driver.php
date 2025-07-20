@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $updateStmt->execute([$name, $license_number, $license_expiry, $new_vendor_id, $driverId]);
 
-        $message = "✅ Driver updated successfully.";
+        $message = " Driver updated successfully.";
 
         // Refresh driver data
         $stmt->execute([$driverId]);

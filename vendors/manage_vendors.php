@@ -6,13 +6,13 @@ require_once '../utils/auth_check.php';
 $role = $_SESSION['role'] ?? '';
 $parentId = $_SESSION['user_id'] ?? null;
 
-// ✅ Restrict access to super_vendor
+//  Restrict access to super_vendor
 if ($role == 'local') {
     echo "<div style='padding: 20px; color: red;'>❌ Access Denied: You can not manage sub-vendors.</div>";
     exit;
 }
 
-// ✅ Fetch sub-vendors
+//  Fetch sub-vendors
 if ($role !== 'super') {
     $stmt = $pdo->prepare("SELECT id, name, email, role, created_at, status FROM users WHERE vendor_id = ? and type = 'sub_vendor'");
     $stmt->execute([$parentId]);

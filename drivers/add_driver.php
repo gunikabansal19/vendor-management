@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = $pdo->prepare("INSERT INTO drivers (vendor_id, name, license_number, license_expiry) VALUES (?, ?, ?, ?)");
             $stmt->execute([$selected_vendor_id, $name, $license_number, $license_expiry]);
-            $message = "✅ Driver added successfully.";
+            $message = " Driver added successfully.";
         } catch (PDOException $e) {
             $error = "❌ Error: " . $e->getMessage();
         }

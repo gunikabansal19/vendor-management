@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sub_role = $_POST['role'] ?? 'local';
 
     // Check if email already exists
-    $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM vendors WHERE email = ?");
+    $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
     $checkStmt->execute([$email]);
     $emailExists = $checkStmt->fetchColumn();
 

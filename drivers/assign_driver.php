@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($driver_id && $vehicle_id) {
         $stmt = $pdo->prepare("UPDATE drivers SET assigned_vehicle = ? WHERE id = ? AND vendor_id = ?");
         $stmt->execute([$vehicle_id, $driver_id, $vendor_id]);
-        $message = "✅ Driver assigned successfully!";
+        $message = " Driver assigned successfully!";
     } else {
         $error = "❌ Please select both a driver and a vehicle.";
     }

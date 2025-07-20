@@ -16,12 +16,12 @@ if (!$user_id || !$vendor_id) {
 
 $error = $message = "";
 
-// ✅ Super vendor sees all drivers
+//  Super vendor sees all drivers
 if ($type === 'super_vendor') {
-    $stmt = $pdo->query("SELECT drivers.id, drivers.name, vendors.name AS vendor_name FROM drivers JOIN vendors ON drivers.vendor_id = vendors.id");
+    $stmt = $pdo->query("SELECT drivers.id, drivers.name, u.name AS vendor_name FROM drivers JOIN users as u ON drivers.vendor_id = u.id");
     $drivers = $stmt->fetchAll();
 
-// ✅ Sub-vendor with delegation rights
+//  Sub-vendor with delegation rights
 } elseif ($type === 'sub_vendor') {
     $permStmt = $pdo->prepare("SELECT can_upload_docs FROM delegations WHERE vendor_id = ?");
     $permStmt->execute([$user_id]);
@@ -89,7 +89,7 @@ if ($type === 'super_vendor') {
             <input type="date" name="expiry_date" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-success">✅ Upload</button>
+        <button type="submit" class="btn btn-success"> Upload</button>
     </form>
 </div>
 </body>
